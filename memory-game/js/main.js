@@ -51,11 +51,33 @@ function createBoard () {
 		let cardElement = document.createElement('img');
 		cardElement.setAttribute('src', 'images/back.png');
 		cardElement.setAttribute('data-id',i);
+		console.log(cardElement);
 		cardElement.addEventListener('click',flipCard);
 		document.getElementById('game-board').appendChild(cardElement)
 	}
 };
 createBoard();
+
+/* function shuffleCard() {
+ 	let random = document.getElementsByTagName('img');
+ 	console.log(random);
+ 	for ( let i = random.length - 1; i>= 0; i--) {
+ 		let j = Math.floor(Math.random() * (i+1));
+ 		let randomCard = document.getElementById('game-board').appendChild(random[j]);
+ 		console.log(randomCard)
+ 	}
+}; */
+function shuffleCard() {
+	for (let i = cards.length -1; i >= 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		let randomCard = cards[i];
+		cards[i] = cards[j];
+		cards[j] = randomCard;
+	}
+	return cards;
+}
+shuffleCard();
+
 
 document.querySelector('.reset').addEventListener('click', reset);
 function reset() {
